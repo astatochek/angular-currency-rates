@@ -10,8 +10,8 @@
     </div>
   </div>
 
-  <div>
-    <div *ngFor="let currency of displayed()">{{ currency }}: {{ info()[currency] | json }}</div>
+  <div class="flex flex-row justify-between items-center w-full">
+    <div *ngFor="let currency of displayed()"><app-card [currency]="currency" /></div>
   </div>
 
 </div>

@@ -9,7 +9,13 @@ module.exports = {
         "anti-flash-white": "#F3F4F6",
         "platinum": "#E7E7E9",
         "eerie-black": "#111827",
-        "auro-metal-saurus": "#6B7280"
+        "auro-metal-saurus": "#6B7280",
+        "majorelle-blue": "#4F46E5",
+        "nyanza": "#DCFCE7",
+        "misty-rose": "#FEE2E2",
+        "ruby-red": "#991B1B",
+        "dark-spring-green": "#166534"
+
       }
     },
   },

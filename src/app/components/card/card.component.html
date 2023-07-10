@@ -1,0 +1,14 @@
+<div class="bg-white w-[19rem] h-36 rounded-lg p-6 flex flex-col items-start justify-between drop-shadow">
+  <div class="flex flex-row justify-between items-start w-full">
+    <div class="text-4xl font-normal">{{ currency }}</div>
+    <app-rate [rate]="value().next - value().prev"/>
+  </div>
+  <div class="h-14">
+    <strong
+      class="font-medium text-majorelle-blue text-[2.5rem]"
+    >{{ value().next | number:'1.2-2' }}</strong>
+    <small class="text-xl font-medium text-auro-metal-saurus">
+      from {{ value().prev | number:'1.2-2' }}
+    </small>
+  </div>
+</div>

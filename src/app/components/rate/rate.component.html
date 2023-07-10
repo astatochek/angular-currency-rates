@@ -1,0 +1,15 @@
+<div class="py-1 text-sm font-medium px-3 flex flex-row justify-center items-center rounded-[3.125rem]" [ngClass]="styles()">
+  <div *ngIf="arrow() === 'up'" class="mr-2 flex justify-center items-center">
+    <svg xmlns="http://www.w3.org/2000/svg" width="0.875rem" height="0.875rem" viewBox="0 0 14 14" fill="none">
+      <path d="M12.8251 6.98755C12.9569 5.66047 12.957 4.93158 12.8251 3.66245C11.5559 3.53058 10.8271 3.53065 9.49998 3.66245" stroke="#EF4444" stroke-width="1.71058" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M12.8206 3.67935L7.5 9L5.5 7L1 11.5" stroke="#EF4444" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </div>
+  <div *ngIf="arrow() === 'down'" class="mr-2 flex justify-center items-center">
+    <svg xmlns="http://www.w3.org/2000/svg" width="0.875rem" height="0.875rem" viewBox="0 0 14 14" fill="none">
+      <path d="M12.8251 7.51245C12.9569 8.83953 12.957 9.56842 12.8251 10.8375C11.5559 10.9694 10.8271 10.9693 9.49998 10.8375" stroke="#22C55E" stroke-width="1.71058" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M12.8199 10.8199L7.5 5.50001L5.5 7.50001L1 3.00001" stroke="#22C55E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </div>
+  {{ value() | number:'1.2-2' }}
+</div>

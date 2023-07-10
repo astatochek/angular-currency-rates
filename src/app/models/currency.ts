@@ -8,6 +8,7 @@ type FlagDict<Properties extends string> = {
 
 export type CurrencyMask = FlagDict<Currency>
 
+
 type InfoDict<Properties extends string> = {
   [key in Properties as `${key}`]: {
     prev: number,
