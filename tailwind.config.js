@@ -15,7 +15,10 @@ module.exports = {
         "misty-rose": "#FEE2E2",
         "ruby-red": "#991B1B",
         "dark-spring-green": "#166534"
-
+      },
+      screens: {
+        '3xl': '1880px',
+        '4xl': '2280px'
       }
     },
   },

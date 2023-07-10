@@ -1,4 +1,4 @@
-<div class="bg-white w-[19rem] h-36 rounded-lg p-6 flex flex-col items-start justify-between drop-shadow">
+<div class="bg-white min-w-[20rem] max-w-[25rem] rounded-lg p-6 flex flex-col items-start justify-between drop-shadow">
   <div class="flex flex-row justify-between items-start w-full">
     <div class="text-4xl font-normal">{{ currency }}</div>
     <app-rate [rate]="value().next - value().prev"/>

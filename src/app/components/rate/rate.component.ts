@@ -14,7 +14,7 @@ export class RateComponent implements OnChanges {
 
   styles = computed(() => {
     switch (this.arrow()) {
-      case "none": return ['bg-platinum', 'text-auro-metal-saurus']
+      case "none": return ['bg-anti-flash-white', 'text-auro-metal-saurus']
       case "up": return ['bg-misty-rose', 'text-ruby-red']
       case "down": return ['bg-nyanza', 'text-dark-spring-green']
     }

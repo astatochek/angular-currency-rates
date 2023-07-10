@@ -14,7 +14,7 @@ export class MainComponent {
   date = computed(() => this.currencyService.date())
 
   mask = signal<CurrencyMask>(CurrencyList.reduce((acc, currency, index) => {
-    acc[currency] = index < 3; // first 3 are: USD, EUR, GBR
+    acc[currency] = true //index < 3; // first 3 are: USD, EUR, GBR
     return acc;
   }, {} as CurrencyMask))
 
