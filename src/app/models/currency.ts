@@ -1,5 +1,5 @@
 
-export const CurrencyList = ["USD", "EUR", "GBR", "CNY", "JPY", "TRY"] as const
+export const CurrencyList = ["USD", "EUR", "GBP", "CNY", "JPY", "TRY"] as const
 export type Currency = typeof CurrencyList[number]
 
 type FlagDict<Properties extends string> = {
