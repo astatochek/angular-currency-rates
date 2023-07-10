@@ -1,23 +1,35 @@
-name: Build and Deploy
+name: GitHub Pages
+
 on:
   push:
     branches:
-      - master
+      - main
+
 jobs:
-  build:
-
+  deploy:
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v3
-      - name: All things angular
-        uses: AhsanAyaz/angular-deploy-gh-pages-actions@v1.4.0
-        with:
-          github_access_token: ${{ secrets.GITHUB_TOKEN }} # see the Configuration section for how you can create secrets
-          build_configuration: staging # The build environment for the app. please look configurations in your angular.json
-          base_href: /angular-currency-rates/   # make sure this corresponds to https://<your_username>.github.io/<base_href>/
-          deploy_branch: gh-pages # The branch the action should deploy to.
-          angular_dist_build_folder: dist/angular-currency-rates # The folder where your project is supposed to be after running ng build by the action.
+      - name: Checkout
+        uses: actions/checkout@v2
 
-permissions:
-  contents: write # Allow 'write' permission to GITHUB_TOKEN to commit to deploy branch.
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install
+
+#      - name: Run tests
+#        run: npm run test:headless
+
+      - name: Build
+        run: npm run build:prod
+
+      - name: Deploy
+        if: success()
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: dist/angular-currency-rates
+          enable_jekyll: true
