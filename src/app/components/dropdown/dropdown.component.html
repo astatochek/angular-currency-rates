@@ -1,0 +1,12 @@
+<div class="absolute left-1/2 mt-2 top-full -translate-x-1/2 sm:left-full sm:top-auto sm:ml-4 sm:mt-0 sm:-translate-x-0 sm:-translate-y-1/2 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu">
+  <div>
+    <button
+      *ngFor="let key of available()"
+      class="text-gray-700 rounded-md block px-4 py-2 text-sm active:bg-gray-100 active:text-gray-900"
+      role="menuitem" tabindex="-1"
+      (click)="displayCurrency(key)"
+    >
+      {{ key }}
+    </button>
+  </div>
+</div>
