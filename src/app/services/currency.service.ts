@@ -5,7 +5,7 @@ function generateRandomValues(current: CurrencyInfo): CurrencyInfo {
   return CurrencyList.reduce((acc, currency) => {
     acc[currency] = Math.random() > 0.5 ? {
       prev: current[currency].next,
-      next: 75 + 50 * Math.random()
+      next: current[currency].next + ((Math.random() > 0.5) ? 1 : -1) * Math.random() * 2
     } : {
       prev: current[currency].next,
       next: current[currency].next

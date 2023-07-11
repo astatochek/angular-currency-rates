@@ -14,7 +14,7 @@ export class MainComponent {
   date = computed(() => this.currencyService.date())
 
   mask = signal<CurrencyMask>(CurrencyList.reduce((acc, currency, index) => {
-    acc[currency] = true //index < 3; // first 3 are: USD, EUR, GBR
+    acc[currency] = index < 3; // first 3 are: USD, EUR, GBR
     return acc;
   }, {} as CurrencyMask))
 
@@ -22,6 +22,18 @@ export class MainComponent {
     () => CurrencyList.filter(key => this.mask()[key])
   )
 
-  info = computed(() => this.currencyService.info())
+  isShowingCurrencyDropdown = signal(false)
+
+  handleDropdownButtonCLick() {
+    const numItemsLeft = CurrencyList.reduce((acc, key) => {
+      acc += Number(!this.mask()[key])
+      return acc
+    }, 0)
+    if (numItemsLeft === 0) {
+      this.isShowingCurrencyDropdown.update(() => false)
+      return
+    }
+    this.isShowingCurrencyDropdown.update(prev => !prev)
+  }
 
 }
