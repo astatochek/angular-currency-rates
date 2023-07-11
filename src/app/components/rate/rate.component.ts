@@ -1,4 +1,4 @@
-import {Component, computed, effect, Input, OnChanges, OnInit, signal} from '@angular/core';
+import {Component, computed, Input, OnChanges, signal} from '@angular/core';
 
 @Component({
   selector: 'app-rate',
@@ -31,13 +31,6 @@ export class RateComponent implements OnChanges {
       this.arrow.update(() => "none")
     }
   }
-
-
-
-  // constructor() {
-  //   effect(() => console.log(this.rate, this.arrow()))
-  //
-  // }
 
 
 }

@@ -1,20 +1,9 @@
-import {Injectable, signal} from '@angular/core';
+import {computed, inject, Injectable, signal} from '@angular/core';
 import {CurrencyInfo, CurrencyList} from "../models/currency";
+import {ApiResponse} from "../models/apiResponse";
+import {ApiService} from "./api.service";
 
-function generateRandomValues(current: CurrencyInfo): CurrencyInfo {
-  return CurrencyList.reduce((acc, currency) => {
-    acc[currency] = Math.random() > 0.5 ? {
-      prev: current[currency].next,
-      next: current[currency].next + ((Math.random() > 0.5) ? 1 : -1) * Math.random() * 2
-    } : {
-      prev: current[currency].next,
-      next: current[currency].next
-    };
-    return acc;
-  }, {} as CurrencyInfo)
-}
-
-const prev = {
+const _prev: ApiResponse = {
   "quotes": {
     "RUBCNY": 0.079863,
     "RUBEUR": 0.010042,
@@ -28,7 +17,7 @@ const prev = {
   "timestamp": 1689018423
 }
 
-const next = {
+const _next: ApiResponse = {
   "quotes": {
     "RUBCNY": 0.079863,
     "RUBEUR": 0.010041,
@@ -47,23 +36,28 @@ const next = {
 })
 export class CurrencyService {
 
-  date = signal(new Date(Date.now()))
+  api = inject(ApiService)
 
-  info = signal<CurrencyInfo>(CurrencyList.reduce((acc, currency) => {
-    acc[currency] =  {
-      prev: 1 / prev.quotes[`RUB${currency}`],
-      next: 1 / next.quotes[`RUB${currency}`]
-    };
-    return acc;
-  }, {} as CurrencyInfo))
+  date = computed(() => {
+    console.log(this.api.response())
+    return new Date(Date.now())
+  })
 
+  prevResponseSnapshot: ApiResponse = _prev
 
-  constructor() {
-    setInterval(() => {
-      this.date.set(new Date(Date.now()))
-      this.info.set(generateRandomValues(this.info()))
-    }, 5000)
-  }
-
+  info = computed<CurrencyInfo>(() => {
+    const response = this.api.response()
+    const next = response === undefined ? _next : response
+    const prev = this.prevResponseSnapshot
+    const res = CurrencyList.reduce((acc, currency) => {
+      acc[currency] =  {
+        prev: 1 / prev.quotes[`${prev.source}${currency}`],
+        next: 1 / next.quotes[`${prev.source}${currency}`]
+      };
+      return acc;
+    }, {} as CurrencyInfo)
+    this.prevResponseSnapshot = next
+    return res
+  })
 
 }

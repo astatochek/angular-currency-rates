@@ -6,6 +6,7 @@ import { MainComponent } from './components/main/main.component';
 import { CardComponent } from './components/card/card.component';
 import { RateComponent } from './components/rate/rate.component';
 import { DropdownComponent } from './components/dropdown/dropdown.component';
+import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -16,7 +17,7 @@ import { DropdownComponent } from './components/dropdown/dropdown.component';
     DropdownComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule, HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
