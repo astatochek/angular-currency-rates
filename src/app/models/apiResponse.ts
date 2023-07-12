@@ -1,12 +1,12 @@
-import {Currency, SourceCurrency} from "./currency";
+import { Currency, SourceCurrency } from './currency';
 
 type QuotesDict<Properties extends string> = {
-  [key in Properties as `${SourceCurrency}${key}`]: number
-}
+  [key in Properties as `${typeof SourceCurrency}${key}`]: number;
+};
 
 export type ApiResponse = {
-  success: boolean,
-  timestamp: number,
-  source: SourceCurrency,
-  quotes: QuotesDict<Currency>
-}
+  success: boolean;
+  timestamp: number;
+  source: typeof SourceCurrency;
+  quotes: QuotesDict<Currency>;
+};

@@ -2,34 +2,7 @@ import { computed, inject, Injectable } from '@angular/core';
 import { CurrencyInfo, CurrencyList } from '../models/currency';
 import { ApiResponse } from '../models/apiResponse';
 import { ApiService } from './api.service';
-
-const _prev: ApiResponse = {
-  quotes: {
-    RUBCNY: 0.079863,
-    RUBEUR: 0.010042,
-    RUBGBP: 0.008584,
-    RUBJPY: 1.56043,
-    RUBTRY: 0.287972,
-    RUBUSD: 0.011044,
-  },
-  source: 'RUB',
-  success: true,
-  timestamp: 1689018423,
-};
-
-const _next: ApiResponse = {
-  quotes: {
-    RUBCNY: 0.079863,
-    RUBEUR: 0.010041,
-    RUBGBP: 0.008586,
-    RUBJPY: 1.560597,
-    RUBTRY: 0.287951,
-    RUBUSD: 0.011044,
-  },
-  source: 'RUB',
-  success: true,
-  timestamp: 1689019384,
-};
+import { _prev, _next } from '../dummies/data';
 
 @Injectable({
   providedIn: 'root',

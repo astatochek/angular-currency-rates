@@ -6,9 +6,10 @@ import { MainComponent } from './components/main/main.component';
 import { CardComponent } from './components/card/card.component';
 import { RateComponent } from './components/rate/rate.component';
 import { DropdownComponent } from './components/dropdown/dropdown.component';
-import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
-import {RequestInterceptor} from "./interceptors/request.interceptor";
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { RequestInterceptor } from './interceptors/request.interceptor';
 import { TokenInputComponent } from './components/token-input/token-input.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -17,14 +18,12 @@ import { TokenInputComponent } from './components/token-input/token-input.compon
     CardComponent,
     RateComponent,
     DropdownComponent,
-    TokenInputComponent
+    TokenInputComponent,
   ],
-  imports: [
-    BrowserModule, HttpClientModule
-  ],
+  imports: [BrowserModule, HttpClientModule, ReactiveFormsModule],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: RequestInterceptor, multi: true },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

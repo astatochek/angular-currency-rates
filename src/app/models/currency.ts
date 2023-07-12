@@ -1,20 +1,18 @@
-
-export const CurrencyList = ["USD", "EUR", "GBP", "CNY", "JPY", "TRY"] as const
-export type Currency = typeof CurrencyList[number]
-export type SourceCurrency = "RUB"
+export const CurrencyList = ['USD', 'EUR', 'GBP', 'CNY', 'JPY', 'TRY'] as const;
+export type Currency = (typeof CurrencyList)[number];
+export const SourceCurrency = 'RUB';
 
 type FlagDict<Properties extends string> = {
-  [key in Properties as `${key}`]: boolean
-}
+  [key in Properties as `${key}`]: boolean;
+};
 
-export type CurrencyMask = FlagDict<Currency>
-
+export type CurrencyMask = FlagDict<Currency>;
 
 type InfoDict<Properties extends string> = {
   [key in Properties as `${key}`]: {
-    prev: number,
-    next: number
-  }
-}
+    prev: number;
+    next: number;
+  };
+};
 
-export type CurrencyInfo = InfoDict<Currency>
+export type CurrencyInfo = InfoDict<Currency>;

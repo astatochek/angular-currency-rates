@@ -5,12 +5,12 @@ import { TokenStatus } from '../models/token';
   providedIn: 'root',
 })
 export class TokenService {
-  status = signal<TokenStatus>('invalid');
+  status = signal<TokenStatus>('valid');
 
-  default = 'u87cmvvQ4u6JOWRDHFJYf2zY3TwXbZoyy';
+  default = 'zwBrgEC1HnVBL6IsIccJU0z1T6QTDtAM';
   changeToken(token: string) {
     localStorage.setItem('apikey', token);
-    this.status.update(() => 'valid');
+    // this.status.update(() => 'valid');
   }
 
   getStored() {
