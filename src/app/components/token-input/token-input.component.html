@@ -2,11 +2,13 @@
   <input
     type="text"
     id="token_input"
-    class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border appearance-none focus:outline-none focus:ring-0 peer"
+    class="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border appearance-none focus:outline-none focus:ring-0 peer"
     [formControl]="tokenInputValue"
     [ngClass]="[
       showError() ? 'border-red-600' : 'border-gray-300',
-      showError() ? '' : 'focus:border-majorelle-blue'
+      showError() ? 'mb-6' : 'focus:border-majorelle-blue',
+      showError() ? 'sm:mb-0' : '',
+      showError() ? 'text-red-600' : 'text-gray-900 '
     ]"
   />
   <label
