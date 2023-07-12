@@ -1,19 +1,16 @@
-import {Component, computed, inject, Input} from '@angular/core';
-import {Currency} from "../../models/currency";
-import {CurrencyService} from "../../services/currency.service";
+import { Component, computed, inject, Input } from '@angular/core';
+import { Currency } from '../../models/currency';
+import { CurrencyService } from '../../services/currency.service';
 
 @Component({
   selector: 'app-card',
   templateUrl: './card.component.html',
-  styleUrls: ['./card.component.css']
+  styleUrls: [],
 })
 export class CardComponent {
+  @Input() currency!: Currency;
 
-  @Input() currency!: Currency
+  private currencyService = inject(CurrencyService);
 
-  private currencyService = inject(CurrencyService)
-
-  value = computed(() => this.currencyService.info()[this.currency])
-
-  NextGreaterThan100 = computed(() => this.value().next >= 100)
+  value = computed(() => this.currencyService.info()[this.currency]);
 }

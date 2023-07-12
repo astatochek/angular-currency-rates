@@ -1,4 +1,4 @@
-import { effect, Injectable, signal } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { TokenStatus } from '../models/token';
 
 @Injectable({
@@ -10,7 +10,6 @@ export class TokenService {
   default = 'zwBrgEC1HnVBL6IsIccJU0z1T6QTDtAMM';
   changeToken(token: string) {
     localStorage.setItem('apikey', token);
-    // this.status.update(() => 'valid');
   }
 
   getStored() {
@@ -18,6 +17,6 @@ export class TokenService {
   }
   constructor() {
     this.changeToken(this.default);
-    effect(() => console.log(this.status()));
+    // effect(() => console.log(this.status()));
   }
 }

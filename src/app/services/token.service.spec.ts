@@ -13,4 +13,13 @@ describe('TokenService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+
+  it('should store token', () => {
+    service.changeToken('noop');
+    expect(service.getStored()).toEqual('noop');
+  });
+
+  it('status should be valid by default', () => {
+    expect(service.status()).toEqual('valid');
+  });
 });

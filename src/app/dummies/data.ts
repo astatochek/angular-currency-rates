@@ -1,4 +1,4 @@
-import { ApiResponse } from '../models/apiResponse';
+import { ApiResponse } from '../models/api.response';
 
 export const _prev: ApiResponse = {
   quotes: {

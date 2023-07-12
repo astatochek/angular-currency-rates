@@ -1,6 +1,6 @@
 import { computed, inject, Injectable } from '@angular/core';
 import { CurrencyInfo, CurrencyList } from '../models/currency';
-import { ApiResponse } from '../models/apiResponse';
+import { ApiResponse } from '../models/api.response';
 import { ApiService } from './api.service';
 import { _prev, _next } from '../dummies/data';
 

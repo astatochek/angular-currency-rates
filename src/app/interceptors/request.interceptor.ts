@@ -7,7 +7,7 @@ import {
   HttpHeaders,
   HttpResponse,
 } from '@angular/common/http';
-import { catchError, Observable, of, switchMap } from 'rxjs';
+import { catchError, Observable, of, tap } from 'rxjs';
 import { TokenService } from '../services/token.service';
 
 @Injectable()
@@ -23,11 +23,12 @@ export class RequestInterceptor implements HttpInterceptor {
       headers: new HttpHeaders({ apikey: `${localStorage.getItem('apikey')}` }),
     });
     return next.handle(modifiedRequest).pipe(
-      switchMap((event) => {
-        if (event instanceof HttpResponse && event.status === 200) {
-          this.tokenService.status.set('valid');
+      tap((event) => {
+        if (event instanceof HttpResponse) {
+          if (event.status === 200) {
+            this.tokenService.status.set('valid');
+          }
         }
-        return of(event);
       }),
       catchError((err) => {
         console.log('Got Error', err);
