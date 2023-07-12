@@ -7,13 +7,16 @@ import { ApiService } from '../../services/api.service';
 @Component({
   selector: 'app-token-input',
   templateUrl: './token-input.component.html',
-  styleUrls: ['./token-input.component.css'],
+  styleUrls: [],
 })
 export class TokenInputComponent {
-  private tokenService = inject(TokenService);
+  tokenService = inject(TokenService);
   private apiService = inject(ApiService);
 
   stored = this.tokenService.getStored();
+
+  flag: boolean | undefined = undefined;
+  info: any = undefined;
 
   tokenInputValue = new FormControl(
     this.stored ? this.stored : this.tokenService.default,
@@ -30,7 +33,13 @@ export class TokenInputComponent {
     effect(() => {
       const value = this.tokenInputSignal();
       const errors = this.tokenInputValue.errors;
-      if (!errors && value) {
+      this.flag = errors === null && value !== null && value !== undefined;
+      this.info = {
+        value,
+        errors,
+      };
+      if (errors === null && value !== null && value !== undefined) {
+        this.flag = true;
         console.log('Valid Value:', value);
         this.tokenService.changeToken(value);
         this.apiService.emitFormValue(value);

@@ -6,7 +6,7 @@ import { TokenService } from '../../services/token.service';
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
-  styleUrls: ['./main.component.css'],
+  styleUrls: [],
 })
 export class MainComponent {
   private currencyService = inject(CurrencyService);
