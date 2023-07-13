@@ -8,6 +8,7 @@
     "build:prod": "ng build --base-href https://astatochek.github.io/angular-currency-rates/",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
+    "test:prod": "ng test --browsers=ChromeHeadless --no-watch --code-coverage",
     "deploy": "ng deploy --base-href=/angular-currency-rates/",
     "lint": "ng lint"
   },

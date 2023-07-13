@@ -11,8 +11,8 @@ import { CurrencyList, SourceCurrency } from '../models/currency';
 describe('ApiService', () => {
   let service: ApiService;
   let httpMock: HttpTestingController;
-  let url = `https://api.apilayer.com/currency_data/live?source=${SourceCurrency}&currencies=${CurrencyList.join()}`;
-  let mockApiResponse = _prev;
+  const url = `https://api.apilayer.com/currency_data/live?source=${SourceCurrency}&currencies=${CurrencyList.join()}`;
+  const mockApiResponse = _prev;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -30,9 +30,10 @@ describe('ApiService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should send a request and return response', () => {
+  it('should send a request and return response', (done: DoneFn) => {
     service.sendRequest().subscribe((response) => {
       expect(response).toEqual(mockApiResponse);
+      done();
     });
 
     const req = httpMock.expectOne(url);

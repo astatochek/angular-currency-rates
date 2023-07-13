@@ -6,16 +6,15 @@ import {
 import {
   HttpRequest,
   HttpHandler,
-  HttpEvent,
   HttpResponse,
   HttpErrorResponse,
 } from '@angular/common/http';
-import { Observable, of, throwError } from 'rxjs';
+import { of, throwError } from 'rxjs';
 import { TokenService } from '../services/token.service';
 import { RequestInterceptor } from './request.interceptor';
 
 class MockHttpHandler implements HttpHandler {
-  handle(request: HttpRequest<unknown>): Observable<HttpEvent<unknown>> {
+  handle() {
     return of(new HttpResponse());
   }
 }
@@ -51,7 +50,7 @@ describe('RequestInterceptor', () => {
     const request = new HttpRequest('GET', '/api');
     spyOn(tokenService.status, 'set');
 
-    interceptor.intercept(request, new MockHttpHandler()).subscribe(() => {});
+    interceptor.intercept(request, new MockHttpHandler()).subscribe();
 
     expect(tokenService.status.set).toHaveBeenCalledWith('valid');
   });

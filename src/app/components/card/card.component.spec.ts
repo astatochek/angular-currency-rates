@@ -60,16 +60,16 @@ describe('CardComponent', () => {
     component.value = signal({ prev: 100, next: 123.45 });
     fixture.detectChanges();
     const htmlElement: HTMLElement = fixture.nativeElement;
-    const strong = htmlElement.querySelector('strong');
-    expect(strong!.textContent).toContain('123.45');
+    const strong = htmlElement.querySelector('strong') as HTMLElement;
+    expect(strong.textContent).toContain('123.45');
   });
 
   it('should render prev value correctly', () => {
     component.value = signal({ prev: 100, next: 123.45 });
     fixture.detectChanges();
     const htmlElement: HTMLElement = fixture.nativeElement;
-    const small = htmlElement.querySelector('small');
-    expect(small!.textContent).toContain('100.00');
+    const small = htmlElement.querySelector('small') as HTMLElement;
+    expect(small.textContent).toContain('100.00');
   });
 
   it('should render rate', () => {

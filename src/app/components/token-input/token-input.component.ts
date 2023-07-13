@@ -15,9 +15,6 @@ export class TokenInputComponent {
 
   stored = this.tokenService.getStored();
 
-  flag: boolean | undefined = undefined;
-  info: any = undefined;
-
   tokenInputValue = new FormControl(
     this.stored ? this.stored : this.tokenService.default,
     [Validators.required, Validators.pattern('[A-Za-z0-9]{32}')],
@@ -33,14 +30,7 @@ export class TokenInputComponent {
     effect(() => {
       const value = this.tokenInputSignal();
       const errors = this.tokenInputValue.errors;
-      this.flag = errors === null && value !== null && value !== undefined;
-      this.info = {
-        value,
-        errors,
-      };
       if (errors === null && value !== null && value !== undefined) {
-        this.flag = true;
-        console.log('Valid Value:', value);
         this.tokenService.changeToken(value);
         this.apiService.emitFormValue(value);
       }
