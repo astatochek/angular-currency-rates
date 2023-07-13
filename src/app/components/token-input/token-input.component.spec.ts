@@ -15,29 +15,12 @@ describe('TokenInputComponent', () => {
   let component: TokenInputComponent;
   let fixture: ComponentFixture<TokenInputComponent>;
   let tokenService: TokenService;
-  // let tokenServiceStub: Partial<TokenService>;
   let apiService: ApiService;
-  // let apiServiceStub: Partial<ApiService>;
-  let spy: jasmine.Spy;
 
   beforeEach(() => {
-    // tokenServiceStub = {
-    //   getStored: () => {
-    //     return 'noooooooooooooooooooooooooooooop';
-    //   },
-    //   changeToken: (token: string) => console.log(token),
-    // };
-    // apiServiceStub = {
-    //   emitFormValue: (value: string) => console.log(value),
-    // };
     TestBed.configureTestingModule({
       declarations: [TokenInputComponent],
-      providers: [
-        TokenService,
-        ApiService,
-        // { provider: TokenService, useValue: tokenServiceStub },
-        // { provider: ApiService, useValue: apiServiceStub },
-      ],
+      providers: [TokenService, ApiService],
       imports: [HttpClientTestingModule, FormsModule, ReactiveFormsModule],
     });
     fixture = TestBed.createComponent(TokenInputComponent);
@@ -45,8 +28,6 @@ describe('TokenInputComponent', () => {
     const de = fixture.debugElement;
     tokenService = de.injector.get(TokenService);
     apiService = TestBed.inject(ApiService);
-    spy = spyOn(tokenService, 'getStored').and.returnValue('noop');
-
     fixture.detectChanges();
   });
 
@@ -63,9 +44,14 @@ describe('TokenInputComponent', () => {
     expect(input.value).toEqual('noop');
   });
 
+  it('should emit value on init', () => {
+    spyOn(apiService, 'emitFormValue');
+    component.ngOnInit();
+    expect(apiService.emitFormValue).toHaveBeenCalled();
+  });
+
   it('should emit events on change value', fakeAsync(() => {
     const validValue = '000000000000000000000000000valid';
-    spy.and.returnValue(validValue);
     component.tokenInputValue.setValue(validValue);
     spyOn(tokenService, 'changeToken');
     spyOn(apiService, 'emitFormValue');

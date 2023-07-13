@@ -80,18 +80,4 @@ describe('RequestInterceptor', () => {
 
     expect(tokenService.status()).toEqual('invalid');
   });
-
-  it('should log error when catchError is triggered', () => {
-    const request = new HttpRequest('GET', '/api');
-    const errorResponse = new HttpErrorResponse({ status: 500 });
-    spyOn(console, 'log');
-
-    interceptor
-      .intercept(request, {
-        handle: () => throwError(() => errorResponse),
-      } as HttpHandler)
-      .subscribe();
-
-    expect(console.log).toHaveBeenCalledWith('Got Error', errorResponse);
-  });
 });

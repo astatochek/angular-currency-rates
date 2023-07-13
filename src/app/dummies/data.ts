@@ -1,5 +1,8 @@
 import { ApiResponse } from '../models/api.response';
 
+/**
+ * Actual data recorded on 12.07.2023
+ */
 export const _prev: ApiResponse = {
   quotes: {
     RUBCNY: 0.079863,
@@ -14,6 +17,9 @@ export const _prev: ApiResponse = {
   timestamp: 1689018423,
 } as const;
 
+/**
+ * Actual data recorded on 12.07.2023
+ */
 export const _next: ApiResponse = {
   quotes: {
     RUBCNY: 0.079863,

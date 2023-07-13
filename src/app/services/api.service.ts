@@ -15,6 +15,9 @@ import { toSignal } from '@angular/core/rxjs-interop';
 @Injectable({
   providedIn: 'root',
 })
+/**
+ * Manages sending requests on schedule and on demand
+ */
 export class ApiService {
   private http = inject(HttpClient);
 
@@ -25,6 +28,10 @@ export class ApiService {
     switchMap(() => this.sendRequest()),
   );
 
+  /**
+   * Passes new value to the service's stream associated with the form for token input
+   * @param value new token that passed form validation
+   */
   emitFormValue(value: string) {
     this.formValueSubject.next(value);
   }
@@ -33,6 +40,9 @@ export class ApiService {
 
   response = toSignal(merge(this.requests$, this.formValueChangesResponse$));
 
+  /**
+   * Sends a request to https://api.apilayer.com/currency_data/live
+   */
   sendRequest() {
     const params = new HttpParams()
       .append('source', SourceCurrency)

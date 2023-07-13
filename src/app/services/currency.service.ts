@@ -7,16 +7,28 @@ import { _prev, _next } from '../dummies/data';
 @Injectable({
   providedIn: 'root',
 })
+/**
+ * State manager for displayed date and currency rates
+ */
 export class CurrencyService {
   private api = inject(ApiService);
 
+  /**
+   * Date is changed whenever a new response is received by api service
+   * */
   date = computed(() => {
-    console.log(this.api.response());
+    const res = this.api.response();
+    if (res) {
+      // console.log(res)
+    }
     return new Date(Date.now());
   });
 
   private prevResponseSnapshot: ApiResponse = _prev;
 
+  /**
+   * Info contains latest currency rates for each currency
+   */
   info = computed<CurrencyInfo>(() => {
     const response = this.api.response();
     const next = response === undefined ? _next : response;

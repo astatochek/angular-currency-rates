@@ -1,4 +1,4 @@
-import { Component, effect, inject } from '@angular/core';
+import { Component, effect, inject, OnInit } from '@angular/core';
 import { TokenService } from '../../services/token.service';
 import { FormControl, Validators } from '@angular/forms';
 import { toSignal } from '@angular/core/rxjs-interop';
@@ -9,7 +9,7 @@ import { ApiService } from '../../services/api.service';
   templateUrl: './token-input.component.html',
   styleUrls: [],
 })
-export class TokenInputComponent {
+export class TokenInputComponent implements OnInit {
   tokenService = inject(TokenService);
   private apiService = inject(ApiService);
 
@@ -35,5 +35,9 @@ export class TokenInputComponent {
         this.apiService.emitFormValue(value);
       }
     });
+  }
+
+  ngOnInit() {
+    this.apiService.emitFormValue(this.tokenInputSignal() || '');
   }
 }

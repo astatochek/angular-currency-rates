@@ -18,7 +18,7 @@ export class RequestInterceptor implements HttpInterceptor {
     request: HttpRequest<unknown>,
     next: HttpHandler,
   ): Observable<HttpEvent<unknown>> {
-    console.log('Intercepted Request:', request);
+    // console.log('Intercepted Request:', request);
     const modifiedRequest = request.clone({
       headers: new HttpHeaders({ apikey: `${localStorage.getItem('apikey')}` }),
     });
@@ -31,7 +31,7 @@ export class RequestInterceptor implements HttpInterceptor {
         }
       }),
       catchError((err) => {
-        console.log('Got Error', err);
+        // console.log('Got Error', err);
         if (err.status === 401 || err.status === 429) {
           this.tokenService.status.set('invalid');
         }
