@@ -10,7 +10,7 @@ import { TokenStatus } from '../models/token';
 export class TokenService {
   status = signal<TokenStatus>('valid');
 
-  default = 'slKYhBaftf2yamHcMeiBEAryaKv0B6PJ';
+  default = 'C4EW4OhAy9OpiWCRVj9ZCBGOuVVpMgkl';
   changeToken(token: string) {
     localStorage.setItem('apikey', token);
   }
